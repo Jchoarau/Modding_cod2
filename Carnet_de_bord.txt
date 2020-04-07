@@ -1,0 +1,24 @@
+J'ai pas mal compris comment faire des modification dans Cod2. En gros ce que font les mod "si j'ai bien compris" prenne des fonctions existantes du jeu et les redéfinissent dans un fichier iwd qui se charge après les autres c'est pour ça qu'il s'appelles tous zzz_... . 
+
+Pour les modifications du nombre de grenade j'ai pris la fonction qui donne des grenade et j'ai modifié le nombre de grenade que l'on donne au spawn. Mais j'ai du également modifier le nombre de grenade max dans les fichier de paramètres des armes. 
+
+J'ai décompréssé tout les iwd iw_*.iwd pour rétroingéniérer le game.
+
+*********************************************
+  NOUVEAU TYPE DE JEU "C'est toi le chat"
+*********************************************
+
+J'ai aussi compris comment ajouter un nouveau gametype (capture de flag ...) je suis en train de disséquer les paramètres du deathmath (pour la simplicité) et du ctf (pour le coté flag) pour faire un sorte de game "chat" comme on avait discuter. 
+
+Il faut bien définir le but du jeu et les modalité:
+ - une personne prend le drapeau et deviens le chat.
+ - la personne qui est le chat gagne des point:
+	- 10 point quand il devient chat 
+	- 1 point par seconde (Gametype QG pour le gain de point par second)
+ - le but des autres est de tuer le chat pour devenir chat. 
+ - Malus pour les gens qui tue un autre sur le chat ?? 
+
+Il faut donc que le chat ai un signe distinctif:
+ - il ne peut pas avoir de pastille sur la tête sinon c'est cramé
+ - il ne peut pas être sur la bousolle sinon c'est cramé
+ - il pourrait être sur la bousolle avec un décallage pour éviter la camp ??
