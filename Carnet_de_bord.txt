@@ -2,7 +2,10 @@ J'ai pas mal compris comment faire des modification dans Cod2. En gros ce que fo
 
 Pour les modifications du nombre de grenade j'ai pris la fonction qui donne des grenade et j'ai modifié le nombre de grenade que l'on donne au spawn. Mais j'ai du également modifier le nombre de grenade max dans les fichier de paramètres des armes. 
 
-J'ai décompréssé tout les iwd iw_*.iwd pour rétroingéniérer le game.
+
+J'ai décompréssé tout les iwd iw_*.iwd pour rétroingéniérer le game en entier.
+
+
 
 *********************************************
   NOUVEAU TYPE DE JEU "C'est toi le chat"
@@ -22,3 +25,28 @@ Il faut donc que le chat ai un signe distinctif:
  - il ne peut pas avoir de pastille sur la tête sinon c'est cramé
  - il ne peut pas être sur la bousolle sinon c'est cramé
  - il pourrait être sur la bousolle avec un décallage pour éviter la camp ??
+
+
+
+***********************************************
+     POUR l'INTEGRATION DES MODIFICATIONS
+***********************************************
+
+ *-* === INTEGRATION DU FICHIER ARENA POUR LE VOTE DES CLIENT === 
+Pour l'ajout des gametypes il est necessaire de redéfinir le fichier .arena ou les mods de jeu pour chaque map pour les voir apparaitre dans les votes. Il faut verifier que la modification de ce fichier s'actualise lorsque l'on surprime un mod de jeu. Je pense qu'il ne faut pas inclure le fichier .arena dans l'archive .iwd du mods modifiant le gametype car il faudra ajouter chaque mod de jeu un par un si on en a plusieur. 
+ - TODO - Il faut réflechir à une maniere d'activer ou de désactiver les mods séparément. Ca me semble compliqué de le faire de facon automatique sachant qu'il n'y a que un fichier .arena par map.
+
+
+ *-* === FICHIER DU COTE SERVEUR UNIQUEMENT === 
+Les fichiers .iwd avec un nom contenant _svr_ ne sont pas téléchargés par le client. Pour la petite modification pour GRENADEFUN il n'est pas necessaire que le client télécharge les modifications. Pour les gametypes il faut que le client ait le fichier .arena avec des maps contenant le gametype et deux fichier dans /maps/mp/gametype/ avec les noms <gametype>.txt (pour l'affichage dans le menu) et <gametype>.gsc même vide. Sans cest trois fichier le client ne peut pas voter pour le mode de jeu. 
+!!!! !!!! !!!! J'ai remarqué plusieur fois des erreurs avec des fichier _svr_ et nottament avec les fichier des armes cheat. Je vois des erreurs du coté du serveurs avec l'utilisation de fichier serveur. Je preconise donc:
+	- de ne pas tuiliser les fichier serveur avant d'avoir compris les tenants et aboutissants des erreurs.
+	- de ne pas utiliser les armes cheat. Ou a la rigueur tout seul sans autres mod (et dans le main).
+Les erreurs pourraient provenir de la longueur des nom des fichier car j'ai vue l'erreur d'écrite dans le paragraphe "CREATION D'UN DOSSIER MJC" aprés celle la. A VERIFIER 
+
+ *-* === CREATION D'UN DOSSIER MJC (Mod_JC) POUR L'ORGANISATION === 
+Je pense qu'il est maintenant nécessaire de mettre en place un stratégie pour pas ruiner l'installation des clients. Pour cela je vais maintenant mettre tous les mods dans un dossier MJC et ajouter la commande " +set fs_game MJC " au lancement du serveur pour que les mods additionnels que j'ajoute ou enlève ne polue pas l'installation des clients. De plus cela permet d'avoir une meilleur vue d'ensemble sur les mods qui sont ajouté. 
+ - TODO Il faut cependant verifier que cela fonctionne avec le serveur Linux version 1.3 et que ca n'ajoute pas d'erreur lors de la game.
+!!! !!! ATTENTION Il faut limiter la longueur des noms des fichiers et donc aussi la longueur du dossier de Mod parce que cela crée une erreur "error info string exceded" qui selon certain forums pourrait faire planter le serveur de facon aléatoir. Il faut donc également diminuer le nombre de fichier pour éviter l'erreur. Il faut au maximum limiterle nombre de fichier iwd et mettre le plus possible de fichier dans un seul iwd. ATTENTION !!! !!!
+
+ 
